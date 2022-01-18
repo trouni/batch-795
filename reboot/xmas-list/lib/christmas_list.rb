@@ -1,4 +1,3 @@
-
 def display_list(list)
   # iterate over the gift list to display each item and the purchase status
   # 1. [ ] macbook
