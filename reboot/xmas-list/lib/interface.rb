@@ -1,3 +1,6 @@
+require_relative 'christmas_list'
+
+# STEP 1
 # 0 - Greet the user
 # 1 - Give the user options (list, add, delete, quit)
 # 2 - Get user input about what they want to do (store it in a variable `action`)
@@ -9,7 +12,7 @@ gift_list = {
   # item: purchased_status # Boolean
   macbook: false,
   iphone: false,
-  dress: false,
+  dress: true,
   job: false
 }
 
@@ -35,11 +38,7 @@ until action == 'quit'
 
   case action
   when 'list'
-    # display the gift list
-    # iterate over the gift list to display each item and the purchase status
-    # 1. [ ] macbook
-    # 2. [ ] iphone
-    # gift_list.each_with_index do |(item_name, status), index|
+    display_list(gift_list)
   when 'add'
     # ask the user for the name of the item to add
     # store the item name in a variable item_name
