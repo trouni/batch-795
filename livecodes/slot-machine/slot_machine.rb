@@ -18,12 +18,17 @@ class SlotMachine
 
   def score
     if three_of_the_same?
-      # find which item is the unique one
+      # all items are the same, we can pick any of them
       unique_item = @reels[0]
       # get the index of the item in the ITEMS array
       item_value = ITEMS.index(unique_item) + 1
       item_value * 10
     elsif two_of_the_same_plus_joker?
+      # [⭐️, 🤩, ⭐️].sort => [⭐️, ⭐️, 🤩]
+      # [🤩, ⭐️, ⭐️].sort => [⭐️, ⭐️, 🤩]
+      # [⭐️, ⭐️, 🤩].sort => [⭐️, ⭐️, 🤩]
+      # [⭐️, ⭐️, 🤩].sort.reverse => [🤩, ⭐️, ⭐️]
+      # 💡 The item in the middle is always the double item!
       doubled_item = @reels.sort[1]
       item_value = ITEMS.index(doubled_item) + 1
       item_value * 5
