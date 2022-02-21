@@ -1,0 +1,3 @@
+[submodule "lectures/devise-demo"]
+	path = lectures/devise-demo
+	url = git@github.com:trouni/devise-demo-795.git
