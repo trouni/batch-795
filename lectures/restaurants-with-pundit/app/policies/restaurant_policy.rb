@@ -16,7 +16,7 @@ class RestaurantPolicy < ApplicationPolicy
 
   # # We don't need the new? because it's the same as the parent (ApplicationPolicy)
   # def new?
-  #   # everyone can create a restaurant, so new? is always true
+  #   # if someone can create, they should be able to see the new restaurant page
   #   create?
   # end
 
@@ -27,21 +27,21 @@ class RestaurantPolicy < ApplicationPolicy
 
   # # We don't need the edit? because it's the same as the parent (ApplicationPolicy)
   # def edit?
-  #   # only the restaurant's owner is allowed to view the edit form for the restaurant
+  #   # if someone can update, they should be able to see the edit restaurant page
   #   update?
   # end
 
   def update?
-    # only the restaurant's owner is allowed to update the restaurant
+    # only the restaurant's owner and admins are allowed to update the restaurant
     # in the controller, we had: current_user == @restaurant.user
     # in pundit, we have:
-    # current_user => user
-    # @restaurant => record (whatever was passed to the authorize method in the controller)
+    #   current_user  =>  user
+    #   @restaurant   =>  record (whatever was passed to the authorize method in the controller)
     user_is_owner? || user_is_admin?
   end
 
   def destroy?
-    # only the restaurant's owner is allowed to destroy the restaurant
+    # only the restaurant's owner and admins are allowed to destroy the restaurant
     user_is_owner? || user_is_admin?
   end
 
