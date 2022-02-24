@@ -1,0 +1,20 @@
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <%= form_tag movies_path, method: :get, class: "mb-5 d-flex" do %>
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Find a movie" %>
+        <%= submit_tag "Search", class: 'btn btn-primary' %>
+      <% end %>
+      <div id="movies">
+        <% @results.each do |result| %>
+          <h4><%= result.searchable.title %></h4>
+          <p><%= result.searchable.synopsis %></p>
+          <%# Polymorphic results need to be handled separately in the views %>
+          <% if result.searchable.is_a?(Movie) %>
+            <p>Director: <%= result.searchable.director.first_name %> <%= result.searchable.director.last_name %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
